@@ -1,0 +1,77 @@
+#CALCULATOR
+
+from tkinter import *
+window = Tk()
+window.title('Calculator')
+window.geometry('350x428')
+window.resizable(False,False)
+
+val = ''
+data = StringVar()
+#Functions
+#1 to display
+def ClickonBtn(num):
+    global val
+    val = val + str(num)
+    data.set(val)
+#2 to CLear
+def BtnClear():
+    global val
+    val = ''
+    data.set(val)
+
+#3 to solve expression
+def Solve():
+    global val
+    val = str(eval(val))
+    data.set(val)
+
+#input field
+input_space = Frame(window,width=350,height=50,highlightcolor='black',highlightthickness=2)
+input_space.pack(side=TOP)
+input_text = Entry(input_space,textvariable=data,font=('default',20),width=330,justify=RIGHT,bd=20,bg='lightblue')
+input_text.grid(row=0,column=0)
+input_text.pack(ipady=10)
+
+#Numbers field
+num_area = Frame(window,width=390,height=350,highlightthickness=2,bg='grey')
+num_area.pack()
+
+#7, 8, 9, +
+sev = Button(num_area,text='7',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(7))
+sev.grid(row=1,column=0)
+eig = Button(num_area,text='8',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(8))
+eig.grid(row=1,column=1)
+nine = Button(num_area,text='9',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(9))
+nine.grid(row=1,column=2)
+add = Button(num_area,text='+',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn('+'))
+add.grid(row=1,column=3)
+#4, 5, 6, *
+four = Button(num_area,text='4',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(4))
+four.grid(row=2,column=0)
+five = Button(num_area,text='5',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(5))
+five.grid(row=2,column=1)
+six = Button(num_area,text='6',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(6))
+six.grid(row=2,column=2)
+mul = Button(num_area,text='*',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn('*'))
+mul.grid(row=2,column=3)
+#1, 2, 3, -
+one = Button(num_area,text='1',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(1))
+one.grid(row=3,column=0)
+two = Button(num_area,text='2',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(2))
+two.grid(row=3,column=1)
+three = Button(num_area,text='3',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(3))
+three.grid(row=3,column=2)
+sub = Button(num_area,text='-',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn('-'))
+sub.grid(row=3,column=3)
+#CE, 0, /, =
+clear = Button(num_area,text='CE',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=BtnClear)
+clear.grid(row=4,column=0)
+divide = Button(num_area,text='/',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn('/'))
+divide.grid(row=4,column=1)
+zero = Button(num_area,text='0',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=lambda: ClickonBtn(0))
+zero.grid(row=4,column=2)
+eq = Button(num_area,text='=',width=5,height=2,bd=10,font=('Arial',15,'bold'),command=Solve)
+eq.grid(row=4,column=3)
+
+window.mainloop()
